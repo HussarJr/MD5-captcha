@@ -39,11 +39,11 @@ static string parce(string md5Captcha)
                 for (int k = 0; k < alphabet.Length; k++)
                 {
 
-                    string Captha = alphabet[i].ToString() + alphabet[j].ToString() + alphabet[n].ToString() + alphabet[k].ToString();
-                    string hashCaptha = CreateMD5(Captha);
-                    if (hashCaptha.EndsWith(md5Captcha))
+                    string Captcha = alphabet[i].ToString() + alphabet[j].ToString() + alphabet[n].ToString() + alphabet[k].ToString();
+                    string hashCapctha = CreateMD5(Captcha);
+                    if (hashCaptcha.EndsWith(md5Captcha))
                     {
-                        return Captha;
+                        return Captcha;
                         flag = true;
                         break;
                     }
@@ -84,7 +84,7 @@ async Task GetTask()
         //string default_hash = "6457660bed88cf07f28ef3dc1a4c35e1";
         string php = ".php";
         int i = 0;
-        string captha = String.Empty;
+        string captcha = String.Empty;
         DirectoryInfo dirInfo = new DirectoryInfo("C://Users/igusa/source/repos/task1/task1/captcha_png");
         foreach (FileInfo file in dirInfo.GetFiles())
         {
@@ -122,19 +122,19 @@ async Task GetTask()
                     string result = res.Substring(0, 4);
                     Console.WriteLine("OCR Result -- " + result);
                 */
-                captha = parce(ImgToString(i));
+                captcha = parce(ImgToString(i));
 
-                if (captha == "no result")
+                if (captcha == "no result")
                 {
                     continue;
                 }
 
 
 
-                Console.WriteLine("Captha -- " + captha);
+                Console.WriteLine("Captcha -- " + captcha);
                 var answer = new Dictionary<string, string>
             {
-                {"ch", captha },
+                {"ch", captcha },
                 {"s", "OK" }
             };
                 var content = new FormUrlEncodedContent(answer);
@@ -183,7 +183,7 @@ async Task GetTask()
                 Console.WriteLine("Message :{0} ", e.Message);
             }
         }
-        File.WriteAllLines("C://Users/igusa/source/repos/task1/task1/captha_secret/secret_list.txt", list);
+        File.WriteAllLines("C://Users/igusa/source/repos/task1/task1/captcha_secret/secret_list.txt", list);
         for (int j = 0; j < list.Count; j++)
         {
             Console.WriteLine(list[j]);
