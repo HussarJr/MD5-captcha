@@ -40,7 +40,7 @@ static string parce(string md5Captcha)
                 {
 
                     string Captcha = alphabet[i].ToString() + alphabet[j].ToString() + alphabet[n].ToString() + alphabet[k].ToString();
-                    string hashCapctha = CreateMD5(Captcha);
+                    string hashCaptcha = CreateMD5(Captcha);
                     if (hashCaptcha.EndsWith(md5Captcha))
                     {
                         return Captcha;
